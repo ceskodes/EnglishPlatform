@@ -1,0 +1,13 @@
+# Ignore Virtual Environment
+venv/
+
+# Compiled or temp files
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# OS files
+Thumbs.db
+
+# Migrations
+**/migrations/
