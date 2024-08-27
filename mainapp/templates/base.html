@@ -6,7 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    
     <ul>
         <li>
             <a href="{% url 'home' %}">Home</a>
@@ -14,6 +13,15 @@
         <li>
             <a href="{% url 'signup' %}">Sign Up</a>
         </li>
+        {% if user.is_authenticated %}
+        <li>
+            <a href="{% url 'signout' %}">Log Out</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'signin' %}">Sign In</a>
+        </li>
+        {% endif %}
     </ul>
     
     {% block content %}
