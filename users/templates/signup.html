@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto">
+    <div class="mx-auto max-w-lg text-center">
+        <h1 class="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">Get started today!</h1>
+    </div>
+
+    <form action="{% url 'signup' %}" class="mx-auto mb-0 mt-8 max-w-5xl space-y-4 shadow-lg sm:p-6 lg:p-8" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <button
+            type="submit"
+            class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+        >
+            Sign Up
+        </button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+    
