@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Person
+from .models import UserProfile
 
 # Register your models here.
-class PersonAdmin(admin.ModelAdmin):
-    model = Person
+class UserProfileAdmin(admin.ModelAdmin):
+    model = UserProfile
     
     # Display if status is activated or not
     list_display = ['user', 'english_level', 'plan_status', 'plan_subscribed']
@@ -11,4 +11,4 @@ class PersonAdmin(admin.ModelAdmin):
     # Search bar
     search_fields = ['user']
     
-admin.site.register(Person, PersonAdmin)
+admin.site.register(UserProfile, UserProfileAdmin)

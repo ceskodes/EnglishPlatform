@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
 from django.views import generic, View
 from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 
 # Login modules
 from django.contrib.auth import login, logout, authenticate
 
 # Form modules
-from .forms import SignUpForm, SignInForm
+from .forms import SignUpForm, LogInForm
 from django.views.generic.edit import FormView
-# Create your views here.
 
 # Form to register new users
 class SignUpFormView(generic.FormView):
@@ -27,9 +27,9 @@ class SignUpFormView(generic.FormView):
         return redirect(self.success_url)
     
 # Form to Log In
-class SignInFormView(FormView):
-    template_name = 'signin.html'
-    form_class = SignInForm
+class LogInFormView(FormView):
+    template_name = 'login.html'
+    form_class = LogInForm
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
@@ -44,9 +44,14 @@ class SignInFormView(FormView):
             return self.form_invalid(form)
 
 # Form to Log Out
-class SignOutView(View):
+class LogOutView(View):
     def get(self, request, *args, **kwargs):
         # Log out the user
         logout(request)
         # Redirect to a specified URL after signing out
-        return redirect(reverse_lazy('home'))  # Change 'home' to your desired redirect URL
+        return redirect(reverse_lazy('login'))  # Change 'home' to your desired redirect URL
+    
+# Profile View
+
+class ProfileView(TemplateView):
+    template_name = "profile.html"
