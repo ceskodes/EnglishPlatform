@@ -6,7 +6,7 @@ from django.contrib.auth.views import PasswordChangeView
 
 # Login modules
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Form modules
 from .forms import SignUpForm, LogInForm
@@ -47,7 +47,7 @@ class LogInFormView(FormView):
             return self.form_invalid(form)
 
 # Form to Log Out
-class LogOutView(View):
+class LogOutView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         # Log out the user
         logout(request)
@@ -55,11 +55,13 @@ class LogOutView(View):
         return redirect(reverse_lazy('login'))  # Change 'home' to your desired redirect URL
     
 # Profile Views
-class ProfileView(SuccessMessageMixin, TemplateView):
+class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = "profile_personal_info.html"
     
-class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
     form_class = PasswordChangeForm
-    template_name = 'profile_change_password.html'
-    success_message = "Successfully Changed Your Password"
+    template_name = 'profile_change_password.html'    
     success_url = reverse_lazy('profile')
+    
+    def __str__(self):
+        return f"{self.name} {self.last_name}"
