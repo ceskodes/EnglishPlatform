@@ -84,3 +84,4 @@ class LogInForm(AuthenticationForm):
     
     class Meta:
         fields = ('username', 'password')
+        
