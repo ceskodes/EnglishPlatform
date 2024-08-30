@@ -17,7 +17,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 class SignUpFormView(generic.FormView):
     template_name = "signup.html"
     form_class = SignUpForm
-    success_url = reverse_lazy('home')  # Redirect to the home page after successful signup
+    success_url = reverse_lazy('login')  # Redirect to the login page after successful signup
     
     def form_valid(self, form):
         # Save the user and related Person instance using the form's save method
@@ -33,8 +33,18 @@ class SignUpFormView(generic.FormView):
 class LogInFormView(FormView):
     template_name = 'login.html'
     form_class = LogInForm
-    success_url = reverse_lazy('home')
 
+    """def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(self.request, user)
+            return super().form_valid(form)
+        else:
+            form.add_error(None, 'Incorrect username or password.')
+            return self.form_invalid(form)"""
+            
     def form_valid(self, form):
         username = form.cleaned_data['username']
         password = form.cleaned_data['password']
@@ -45,6 +55,10 @@ class LogInFormView(FormView):
         else:
             form.add_error(None, 'Incorrect username or password.')
             return self.form_invalid(form)
+
+    def get_success_url(self):
+        # Genera la URL de éxito con el nombre de usuario del usuario autenticado
+        return reverse_lazy('logged_home', kwargs={'username': self.request.user.username})
 
 # Form to Log Out
 class LogOutView(LoginRequiredMixin, View):
