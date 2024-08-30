@@ -13,7 +13,7 @@ class EnglishContent(models.Model):
         ]
     
     level = models.CharField(max_length=2, choices=LEVEL_CHOICE , verbose_name="English Level")
-    grammar_title = models.CharField(max_length=100, verbose_name="Grammar title")
-    grammar_theory = models.TextField(max_length = 3000)
+    title = models.CharField(max_length=100, verbose_name="Grammar title")
+    description = models.CharField(max_length=100, verbose_name="Description")
     
     
