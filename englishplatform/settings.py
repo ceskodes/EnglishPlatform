@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'crispy_tailwind',
     'mainapp',
     'users',
-    'englishcontent'
+    'englishcontent',
+    'a1topics'
 ]
 
 MIDDLEWARE = [

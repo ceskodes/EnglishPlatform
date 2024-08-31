@@ -6,7 +6,7 @@ class EnglishContentAdmin(admin.ModelAdmin):
     model = EnglishContent
     
     # Display if status is activated or not
-    list_display = ['title', 'level']
+    list_display = ['title', 'level', 'status']
     
     # Search bar
     search_fields = ['title', 'level']

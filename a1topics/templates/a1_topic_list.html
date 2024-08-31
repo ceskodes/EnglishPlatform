@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<ul>
+    {% for a1_c in a1_content_list %}
+        {% for content in english_content_list %}
+            {% if a1_c.title == content.title and content.status == True %}
+            <li>
+                {{a1_c.title}}
+            </li>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</ul>
+
+{% endblock content %}
+    

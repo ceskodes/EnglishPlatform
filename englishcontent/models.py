@@ -15,5 +15,5 @@ class EnglishContent(models.Model):
     level = models.CharField(max_length=2, choices=LEVEL_CHOICE , verbose_name="English Level")
     title = models.CharField(max_length=100, verbose_name="Grammar title")
     description = models.CharField(max_length=100, verbose_name="Description")
-    
+    status = models.BooleanField(default=False, verbose_name="Topic Status")
     
