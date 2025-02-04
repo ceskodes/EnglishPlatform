@@ -6,6 +6,6 @@ class A1ContentAdmin(admin.ModelAdmin):
     model = A1Content
     
     # Display if status is activated or not
-    list_display = ['title', 'pdf_files']
+    list_display = ['title']
     
 admin.site.register(A1Content, A1ContentAdmin)

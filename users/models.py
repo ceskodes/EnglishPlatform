@@ -21,8 +21,6 @@ class UserProfile(models.Model):
     type_of_user = models.CharField(max_length=7, verbose_name="Type of user")
     
     # Personal details
-    name = models.CharField(max_length=15, verbose_name="Name")
-    last_name = models.CharField(max_length=15, verbose_name="Last Name")
     phone_number = models.CharField(max_length=15, verbose_name="Phone Number", blank=True, null=True)
     country = models.CharField(max_length=15, verbose_name="Country", blank=True, null=True)
     english_level = models.CharField(max_length=2, choices=LEVEL_CHOICE, verbose_name="English Level")
@@ -30,8 +28,5 @@ class UserProfile(models.Model):
     # Platform details
     plan_subscribed = models.CharField(max_length=10, verbose_name="Plan Subscribed", blank=True, null=True)
     plan_status = models.BooleanField(default=False, verbose_name="Plan Status")
-    
-    def __str__(self):
-        return f"{self.name} {self.last_name}"
 
 

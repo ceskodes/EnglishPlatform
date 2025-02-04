@@ -17,8 +17,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 class SignUpFormView(generic.FormView):
     template_name = "signup.html"
     form_class = SignUpForm
-    success_url = reverse_lazy('login')  # Redirect to the login page after successful signup
-    
+
     def form_valid(self, form):
         # Save the user and related Person instance using the form's save method
         created_user = form.save()
@@ -27,23 +26,16 @@ class SignUpFormView(generic.FormView):
         login(self.request, created_user)
         
         # Redirect to the desired URL
-        return redirect(self.success_url)
+        return redirect(self.get_success_url())
+
+    def get_success_url(self):
+        # Redirect to 'logged_home' with the username as a URL parameter
+        return reverse_lazy('logged_home', kwargs={'username': self.request.user.username})
     
 # Form to Log In
 class LogInFormView(FormView):
     template_name = 'login.html'
     form_class = LogInForm
-
-    """def form_valid(self, form):
-        username = form.cleaned_data['username']
-        password = form.cleaned_data['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(self.request, user)
-            return super().form_valid(form)
-        else:
-            form.add_error(None, 'Incorrect username or password.')
-            return self.form_invalid(form)"""
             
     def form_valid(self, form):
         username = form.cleaned_data['username']
@@ -57,7 +49,7 @@ class LogInFormView(FormView):
             return self.form_invalid(form)
 
     def get_success_url(self):
-        # Genera la URL de éxito con el nombre de usuario del usuario autenticado
+        # Generates the success URL with the username of the auth user
         return reverse_lazy('logged_home', kwargs={'username': self.request.user.username})
 
 # Form to Log Out
@@ -66,7 +58,7 @@ class LogOutView(LoginRequiredMixin, View):
         # Log out the user
         logout(request)
         # Redirect to a specified URL after signing out
-        return redirect(reverse_lazy('login'))  # Change 'home' to your desired redirect URL
+        return redirect(reverse_lazy('login')) 
     
 # Profile Views
 class ProfileView(LoginRequiredMixin, TemplateView):
