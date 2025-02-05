@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import EnglishContent
+from django.http import Http404
+from django.utils.text import slugify
 
 # Content Views based on English Level
 class A1GrammarView(LoginRequiredMixin, ListView):
@@ -11,6 +13,7 @@ class A1GrammarView(LoginRequiredMixin, ListView):
     
     def get_queryset(self, queryset=None):
         return EnglishContent.objects.filter(level='A1')
+
 class A2GrammarView(LoginRequiredMixin, ListView):
     template_name = "A2.html"
     model = EnglishContent

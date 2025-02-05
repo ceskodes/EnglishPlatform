@@ -22,5 +22,4 @@ urlpatterns = [
     path('', include('mainapp.urls')),
     path('users/', include('users.urls')),
     path('content/', include('englishcontent.urls')),
-    path('a1topics/', include('a1topics.urls'))
 ]

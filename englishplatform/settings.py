@@ -45,8 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'mainapp',
     'users',
-    'englishcontent',
-    'a1topics'
+    'englishcontent'
 ]
 
 MIDDLEWARE = [
@@ -64,7 +63,7 @@ ROOT_URLCONF = 'englishplatform.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
