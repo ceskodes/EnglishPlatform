@@ -41,7 +41,7 @@
                 </span>
                 <div>
                     <h2 class="text-lg font-bold">
-                        <a href="">{{ content.title }}</a>
+                        <a href="{% url 'A1_dynamic_content_view' title_slug=content.title|slugify %}">{{ content.title }}</a>
                     </h2>
 
                     <p class="mt-1 text-sm text-gray-300">

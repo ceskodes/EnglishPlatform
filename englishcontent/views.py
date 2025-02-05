@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import EnglishContent
 from django.http import Http404
-from django.utils.text import slugify
+from django.template.defaultfilters import slugify
 
 # Content Views based on English Level
 class A1GrammarView(LoginRequiredMixin, ListView):
@@ -13,6 +13,10 @@ class A1GrammarView(LoginRequiredMixin, ListView):
     
     def get_queryset(self, queryset=None):
         return EnglishContent.objects.filter(level='A1')
+
+def A1_dynamic_content_view(request, title_slug):
+    template_name = f"A1Topics/{title_slug}.html"
+    return render(request, template_name)
 
 class A2GrammarView(LoginRequiredMixin, ListView):
     template_name = "A2.html"

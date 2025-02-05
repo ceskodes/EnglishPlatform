@@ -23,5 +23,6 @@ urlpatterns = [
     path('B1/', views.B1GrammarView.as_view(), name='B1_view'),
     path('B2/', views.B2GrammarView.as_view(), name='B2_view'),
     path('C1/', views.C1GrammarView.as_view(), name='C1_view'),
-    path('C2/', views.C2GrammarView.as_view(), name='C2_view')
+    path('C2/', views.C2GrammarView.as_view(), name='C2_view'),
+    path('A1/<slug:title_slug>/', views.A1_dynamic_content_view, name='A1_dynamic_content_view')
 ]
