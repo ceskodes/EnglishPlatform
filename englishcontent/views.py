@@ -14,6 +14,7 @@ class A1GrammarView(LoginRequiredMixin, ListView):
     def get_queryset(self, queryset=None):
         return EnglishContent.objects.filter(level='A1')
 
+# Dynamic content URL and view
 def A1_dynamic_content_view(request, title_slug):
     template_name = f"A1Topics/{title_slug}.html"
     return render(request, template_name)

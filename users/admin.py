@@ -6,7 +6,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     model = UserProfile
     
     # Display if status is activated or not
-    list_display = ['user', 'english_level', 'plan_status', 'plan_subscribed']
+    list_display = ['user', 'english_level', 'type_of_user','plan_status', 'plan_subscribed']
     
     # Search bar
     search_fields = ['user']
